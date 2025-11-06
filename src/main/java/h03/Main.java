@@ -30,18 +30,20 @@ public class Main {
         initializeWorld(coins); // create the world and set its dimensions
 
         ControlCenter controlCenter = new ControlCenter(); // create a control center
-        controlCenter.placeCoinsInWorld(coins); // place coins in the world
 
-        // initialize robots
+        // initialize robots (H3.1)
         ScanRobot[] scanRobots = controlCenter.initScanRobots();
         CleanRobot[] cleanRobots = controlCenter.initCleaningRobots();
 
-        // scan the world for coins
+        // place coins in the world (H3.2)
+        controlCenter.placeCoinsInWorld(coins);
+
+        // scan the world for coins (H3.4.2)
         boolean[][] coinsInWorld = controlCenter.moveScanRobots(scanRobots);
         System.out.println("The following coins were found:");
         System.out.println(Arrays.deepToString(coinsInWorld));
 
-        // clean the world
+        // clean the world (H3.4.4)
         controlCenter.moveCleanRobots(cleanRobots, coinsInWorld);
         coinsInWorld = controlCenter.moveScanRobots(scanRobots);
         System.out.println("The following coins were found after 1st clean:");
